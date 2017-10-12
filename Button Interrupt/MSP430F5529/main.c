@@ -6,6 +6,7 @@
 //simply set the bit values here for a different microprocessor
 //P1DIR, P1OUT, P1REN, etc will still have to be changed
 
+//Button Interrupt
 int main(void)
 {
     WDTCTL = WDTPW + WDTHOLD; // Stop watchdog timer

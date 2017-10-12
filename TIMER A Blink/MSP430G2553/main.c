@@ -1,15 +1,16 @@
 #include <msp430g2553.h>
 
+//Timer A Blink
 char i=0;
 void main(void) 
 {
 	WDTCTL = WDTPW + WDTHOLD;    // disable watchdog
-
+	//PM5CTL0 &= ~LOCKLPM5; // Disable GPIO power-on default high-impedance mode to activate configured port settings
 	P2DIR = BIT0 + BIT2 + BIT4 + BIT5;
 	P2OUT = BIT0 + BIT2 + BIT4 + BIT5;    // set the 4 gpio pins as outputs
 
-	BCSCTL1 = CALBC1_1MHZ;    // Set DCO to calibrated 1 MHz.
-	DCOCTL = CALDCO_1MHZ;     // LED blink time delay = TACCR0 / DC0CTL, or time delay = 62500-1 / 1 MHz = 0.062499 seconds.
+	//BCSCTL1 = CALBC1_1MHZ;    // Set DCO to calibrated 1 MHz.
+	//DCOCTL = CALDCO_1MHZ;     // LED blink time delay = TACCR0 / DC0CTL, or time delay = 62500-1 / 1 MHz = 0.062499 seconds.
 
 	TACCR0 = 62500 - 1;    // A period of 62,500 cycles is 0 to 62,499. TACCR0 = 1500-1 is about as fast as it can be, visually.
 	TACCTL0 = CCIE;        // Enable interrupts for CCR0.
