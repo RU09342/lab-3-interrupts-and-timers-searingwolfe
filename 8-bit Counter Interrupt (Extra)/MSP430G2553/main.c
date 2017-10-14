@@ -52,15 +52,15 @@ int pattern (int value)
     patterntest = 0;
  
     for (i=7;i>=0;i--){ // loop with bit shifting
-        if (value >= power(i)){ // decide if value higher is then 2^5-0
-            patterntest |= BIT0;
-            value = value - power(i);
+        if (value >= power(i)){ // decide if value is higher than 2^i
+            patterntest |= BIT0; //set patterntest equal to the first binary bit
+            value = value - power(i); //reset the value of value
         }
         else {
-            patterntest &= ~BIT0; // if not, then 0
+            patterntest &= ~BIT0; // if not, then 0. invert the first binary bit
         }
         if (i != 0){
-        patterntest <<= 1; // shift bit 1 to the left
+            patterntest <<= 1; // shift bit 1 to the left
         }
     }
   return  patterntest; // set output
@@ -70,8 +70,8 @@ int power (int n) // raise 2 to the power n
     int p;
     int i;
     p = 1;
-        for (i=1;i<=n;i++){
-            p=p*2; // loop 2*p until n
-        }
+    for (i=1;i<=n;i++){
+        p=p*2; // loop 2*p until n
+    }
     return p; // return outcome
 }
